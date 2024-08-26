@@ -1,0 +1,8 @@
+Giá trị trả về :
+	1a: n1.i=5
+	1b: n1.i=n2.i=10
+	1c: n.i=15
+Sự khác biệt giữa mỗi mã:
+bai1a: Chỉ gán giá trị từ n2.i sang n1.i, không thay đổi tham chiếu, nên thay đổi sau đó ở n2.i không ảnh hưởng đến n1.i.
+bai1b: Gán tham chiếu n1 = n2, khiến n1 và n2 tham chiếu cùng một đối tượng. Mọi thay đổi sau đó sẽ ảnh hưởng đồng thời đến cả n1.i và n2.i.
+bai1c: Thay đổi giá trị của đối tượng thông qua một hàm, khi hàm nhận tham chiếu đến đối tượng n, dẫn đến sự thay đổi trực tiếp của giá trị n.i.
