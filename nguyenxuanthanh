@@ -1,0 +1,106 @@
+câu 1 
+
+interface Signal {
+    double getWavelength();
+}
+
+class DiscreteSignal implements Signal {
+    private double amplitude;
+    private double frequency;
+    private double period;
+
+    public DiscreteSignal(double amplitude, double frequency, double period) {
+        this.amplitude = amplitude;
+        this.frequency = frequency;
+        this.period = period;
+    }
+    public double getWavelength() 
+{         return 0;     }
+}
+
+class ContinuousSignal implements Signal {
+    private double amplitude;
+    private double frequency;
+    private double period;
+
+    public ContinuousSignal(double amplitude, double frequency, double period) {
+        this.amplitude = amplitude;
+        this.frequency = frequency;
+        this.period = period;
+    }
+    public double getWavelength() {
+        if (frequency != 0) {
+            return 1 / frequency; // Bước sóng = 1 / Tần số
+        } else {
+            return Double.POSITIVE_INFINITY;
+        }
+    }
+}
+câu 2
+2.1
+public class DiscreteSignal {
+    private int n0;
+    private int[] h; 
+
+    public DiscreteSignal(int n0, int[] h) {
+        this.n0 = n0;
+        this.h = h;
+    }
+
+    public double computeSignal(int n) {
+        int delta = deltaFunction(n - n0);
+        
+        if (n - n0 >= 0 && n - n0 < h.length) {
+            return delta * h[n - n0];
+        } else {
+            return 0;
+        }
+    }
+
+    public void printSignal(int[] indices) {
+        System.out.println("Tín hiệu x(n) tại các chỉ số:");
+        for (int n : indices) {
+            double signalValue = computeSignal(n);
+            System.out.println("x(" + n + ") = " + signalValue);
+        }
+    }
+
+    private int deltaFunction(int n) {
+        return (n == 0) ? 1 : 0;
+    }
+
+    public static void main(String[] args) {
+        int n0 = 2;
+        int[] h = {1, 2, 3, 4, 5}; 
+
+        DiscreteSignal signal = new DiscreteSignal(n0, h);
+        
+        int[] indices = {0, 1, 2, 3, 4};
+        signal.printSignal(indices);
+    }
+}
+2.2
+public class Radar {
+
+    // Phương thức tính giá trị tín hiệu x(n) theo công thức đã cho
+    public static double computeSignal(int n) {
+        if (n >= 0 && n <= 15) {
+            return 1 - (n / 15.0);
+        } else {
+            return 0;
+        }
+    }
+
+    // Phương thức chính để kiểm tra hoạt động của lớp
+    public static void main(String[] args) {
+        int n = 4; // Giá trị n để phân tích tín hiệu
+
+        System.out.println("Tín hiệu với n = 4:");
+
+        // Tính và in giá trị tín hiệu cho các chỉ số từ 0 đến n-1
+        for (int i = 0; i < n; i++) {
+            double signalValue = computeSignal(i);
+            System.out.println("x(" + i + ") = " + signalValue);
+        }
+    }
+}
