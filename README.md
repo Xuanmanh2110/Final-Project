@@ -5,7 +5,9 @@ UML classic diagram
 UML sequence diagram đăng nhập
 ![image](https://github.com/user-attachments/assets/f6100858-ce12-4747-8de8-36c06c2b4269)
 Nhap/cap nhat TT SV
-![image](https://github.com/user-attachments/assets/c0e64bd4-ced4-480b-b002-1df78f6a7209)
+![image](https://github.com/user-attachments/assets/31459375-1d78-4ca0-8122-b7f35df96419)
+
 Nhap/Cap nhat diem
-![image](https://github.com/user-attachments/assets/cea4b94c-62ff-4579-b578-ba2d0466dcdf)
+![image](https://github.com/user-attachments/assets/926b41d4-ec9a-426e-aab5-bef8d9df3804)
+
 
