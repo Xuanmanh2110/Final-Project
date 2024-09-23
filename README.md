@@ -11,4 +11,4 @@ Nhap/Cap nhat diem
 ![image](https://github.com/user-attachments/assets/926b41d4-ec9a-426e-aab5-bef8d9df3804)
 
 UML sequence diagram Tra Cuu
-![image](https://github.com/user-attachments/assets/becefcfd-be1c-4ee7-a6e3-7fd30446b65b)
+![image](https://github.com/user-attachments/assets/70a84f7e-bd09-4cbe-befa-6bf974a947ce)
