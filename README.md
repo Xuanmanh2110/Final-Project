@@ -10,4 +10,6 @@ Nhap/cap nhat TT SV
 Nhap/Cap nhat diem
 ![image](https://github.com/user-attachments/assets/926b41d4-ec9a-426e-aab5-bef8d9df3804)
 
+UML sequence diagram Tra Cuu
+<img width="760" alt="image" src="https://github.com/user-attachments/assets/9ba1393c-15e6-44e1-aad8-eb58bab3ecd2">
 
