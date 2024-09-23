@@ -1,5 +1,6 @@
 UML classic diagram
-![image](https://github.com/user-attachments/assets/665b5354-b6ad-45ff-a8be-a8725bb84a1e)
+![image](https://github.com/user-attachments/assets/73d93e60-7697-4ee7-84f6-f45568a86cd7)
+
 
 UML sequence diagram đăng nhập
 ![image](https://github.com/user-attachments/assets/f6100858-ce12-4747-8de8-36c06c2b4269)
