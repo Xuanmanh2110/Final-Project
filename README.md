@@ -38,7 +38,10 @@ Nhap/Cap nhat diem
 
 UML sequence diagram Tra Cuu
 ![image](https://github.com/user-attachments/assets/70a84f7e-bd09-4cbe-befa-6bf974a947ce)
+
 giao diện đầu ra
-![image](https://github.com/user-attachments/assets/2a0e9e8b-a9de-45a7-8e67-bdbe43152407)
+![image](https://github.com/user-attachments/assets/96a5c49a-b6e7-4a6a-8a64-2fc20f7578c3)
+
+
 
 
