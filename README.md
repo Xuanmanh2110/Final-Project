@@ -1,3 +1,26 @@
+### Chạy Dự án
+
+```
+cd quanlysinhvien
+```
+
+Chạy dev:  
+```
+mvn clean javafx:run
+```
+
+Build: 
+```
+mvn clean javafx:jlink
+```
+xong chạy 
+```
+.\target\QLSV\bin\QuanLySinhVien
+```
+
+
+### UML
+
 UML classic diagram
 ![image](https://github.com/user-attachments/assets/73d93e60-7697-4ee7-84f6-f45568a86cd7)
 
