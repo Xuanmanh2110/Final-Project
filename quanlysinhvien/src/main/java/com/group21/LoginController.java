@@ -35,16 +35,15 @@ public class LoginController {
 
         if (validateLogin(username, password)) {
             messageLabel.setText("Login successful!");
-            PauseTransition pause = new PauseTransition(Duration.seconds(1));
-            pause.setOnFinished(event -> {
-                try {
-                    App.setRoot((Stage) loginButton.getScene().getWindow(), "homePage");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-            pause.play();
-            // App.setRoot("homePage");
+            // PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            // pause.setOnFinished(event -> {
+            //     try {
+            //         App.setRoot((Stage) loginButton.getScene().getWindow(), "homePage");
+            //     } catch (IOException e) {
+            //         e.printStackTrace();
+            //     }
+            // });
+            // pause.play();
         } else {
             messageLabel.setText("Invalid username or password.");
         }
