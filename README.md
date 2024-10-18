@@ -1,5 +1,10 @@
 ### Chạy Dự án
 
+chuyển vô thư mục Final-Project
+```
+cd Final-Project
+```
+
 Chạy dev:  
 ```
 mvn clean javafx:run
