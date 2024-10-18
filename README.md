@@ -1,9 +1,5 @@
 ### Chạy Dự án
 
-```
-cd quanlysinhvien
-```
-
 Chạy dev:  
 ```
 mvn clean javafx:run
