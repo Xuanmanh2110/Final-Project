@@ -48,7 +48,7 @@
                             <noManPages>true</noManPages>
                             <launcher>QuanLySinhVien</launcher>
                             <jlinkImageName>QLSV</jlinkImageName>
-                            <mainClass>com.group21/com.group21.App</mainClass>
+                            <mainClass>com.group21.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>
