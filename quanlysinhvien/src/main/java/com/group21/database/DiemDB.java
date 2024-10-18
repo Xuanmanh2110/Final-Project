@@ -6,10 +6,10 @@ import java.util.List;
 import com.group21.model.Diem;
 
 public class DiemDB {
+
     public static List<Diem> diemList = new ArrayList<>();
 
     public DiemDB() {
-        diemList = new ArrayList<>();
     }
 
     public static void addDiem(Diem diem) {

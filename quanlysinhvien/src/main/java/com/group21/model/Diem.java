@@ -65,4 +65,8 @@ public class Diem {
         this.diemCK = diemCK;
     }
 
+    public double getDiemTongKet() {
+        return (diemCC1 * 0.05 + diemCC2 * 0.05 + diemGK * 0.4 + diemCK * 0.5);
+    }
+
 }

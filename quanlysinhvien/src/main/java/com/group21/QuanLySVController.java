@@ -147,4 +147,9 @@ public class QuanLySVController {
     private void gotoHomePage() throws IOException {
         App.setRoot((Stage) studentListView.getScene().getWindow(), "homePage");
     }
+
+    @FXML
+    public void goToQuanLyDiem() throws IOException {
+        App.setRoot((Stage) studentListView.getScene().getWindow(),"quanLyDiem");
+    }
 }

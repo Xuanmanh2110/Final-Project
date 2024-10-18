@@ -1,6 +1,7 @@
 package com.group21.model;
 
 import java.time.LocalDate;
+import java.util.*;
 
 public class SinhVien {
     String msv;
@@ -10,6 +11,15 @@ public class SinhVien {
     String lop;
     String sdt;
     String email;
+    List <String> maMHs = new ArrayList<>();
+
+    public List<String> getMaMHs() {
+        return maMHs;
+    }
+
+    public void setMaMHs(List<String> maMHs) {
+        this.maMHs = maMHs;
+    }
 
     public SinhVien(String msv, String ten, LocalDate ngaySinh, String gioiTinh, String lop, String sdt, String email) {
         this.msv = msv;
