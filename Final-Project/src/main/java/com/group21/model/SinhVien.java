@@ -4,14 +4,14 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class SinhVien {
-    String msv;
-    String ten;
-    LocalDate ngaySinh;
-    String gioiTinh;
-    String lop;
-    String sdt;
-    String email;
-    List <String> maMHs = new ArrayList<>();
+    private String msv;
+    private String ten;
+    private LocalDate ngaySinh;
+    private String gioiTinh;
+    private String lop;
+    private String sdt;
+    private String email;
+    private List<String> maMHs = new ArrayList<>();
 
     public List<String> getMaMHs() {
         return maMHs;
@@ -19,6 +19,10 @@ public class SinhVien {
 
     public void setMaMHs(List<String> maMHs) {
         this.maMHs = maMHs;
+    }
+
+    public void addMaMH(String maMH) {
+        this.maMHs.add(maMH);
     }
 
     public SinhVien(String msv, String ten, LocalDate ngaySinh, String gioiTinh, String lop, String sdt, String email) {

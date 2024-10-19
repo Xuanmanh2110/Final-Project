@@ -7,15 +7,21 @@ import com.group21.database.*;
 import com.group21.model.*;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 public class QuanLyDiemController {
 
     @FXML
     private TextField maSVField;
+
+    @FXML
+    private TextField tenMHField;
 
     @FXML
     private TextField maMHField;
@@ -56,10 +62,10 @@ public class QuanLyDiemController {
     private Label tongKetLabel;
 
     @FXML
-    private Label messageNhapDiemLabel;
+    private TextFlow messageNhapDiemTFlow;
 
     @FXML
-    private TextField tenMHField;
+    private TextField timTenMHField;
 
     @FXML
     private Label messageLabel;
@@ -70,9 +76,16 @@ public class QuanLyDiemController {
     @FXML
     private ListView<MonHocDTO> danhSachMonHoc = new ListView<>();
 
-    private MonHocDTO selectedMonHoc;
+    private MonHocDTO selectedMonHocDTO;
 
     private List<MonHocDTO> monHocList = new ArrayList<>();
+
+    private HBox previouslySelectedHBox;
+
+    @FXML
+    public void initialize() {
+        setupDanhSachMonHoc();
+    }
 
     @FXML
     public void goToDanhSachSV() throws IOException {
@@ -86,23 +99,21 @@ public class QuanLyDiemController {
 
         SinhVien sinhVien = SinhVienDB.searchByMsv(maSV);
 
-        monHocList = new ArrayList<>();
-
         // Kiem tra xem sinh viên co ton tai hay khong
         if (sinhVien != null) {
             // Lấy mã môn học list của sinh viên
             List<String> maMHs = SinhVienDB.sinhViens.get(maSV).getMaMHs();
 
+            // Set lại môn học dto list của sinh viên
             monHocList = getMonHocDTOs(maSV, maMHs);
-
-            if (!monHocList.isEmpty()) {
-                setupDanhSachMonHoc();
-            }
 
             timMHBtn.setDisable(false);
 
+            messageLabel.setText("Tìm thấy sinh viên!");
+
         } else {
             clearLabels();
+            monHocList.clear();
             messageLabel.setText("Không tìm thấy sinh viên!");
         }
 
@@ -114,7 +125,7 @@ public class QuanLyDiemController {
 
         // Tạo môn học dto từ mã môn học list
         for (String maMH : maMHs) {
-            for (MonHoc monHoc : MonHocDB.monHocList) {
+            for (MonHoc monHoc : MonHocDB.monHocs) {
                 if (monHoc.getMaMH().equals(maMH)) {
 
                     MonHocDTO monHocDTO = new MonHocDTO();
@@ -127,11 +138,13 @@ public class QuanLyDiemController {
                 }
             }
         }
-
         return monHocDTOs;
     }
 
     private void setupDanhSachMonHoc() {
+        // Remove selection behaviour của ListView
+        danhSachMonHoc.setSelectionModel(new NoSelectionModel<>());
+
         danhSachMonHoc.setCellFactory(param -> new ListCell<MonHocDTO>() {
             @Override
             protected void updateItem(MonHocDTO monHoc, boolean empty) {
@@ -140,24 +153,44 @@ public class QuanLyDiemController {
                     setGraphic(null);
                 } else {
                     HBox hBox = new HBox();
-                    Label tenMHLabel = new Label(monHoc.getTenMH());
 
-                    if (monHoc.getDiem() != null) {
-                        Label diemLabel = new Label(
-                                "Điểm Tổng Kết: " + String.format("%.2f", monHoc.getDiem().getDiemTongKet()));
-                        hBox.getChildren().addAll(tenMHLabel, diemLabel);
+                    // Create button với tên mã môn học
+                    Button monHocButton = new Button(monHoc.getTenMH() + " - " + monHoc.getMaMH());
 
-                    } else {
-                        hBox.getChildren().add(tenMHLabel);
-                    }
-                    // Click 2 lần vô môn học
-                    hBox.setOnMouseClicked((MouseEvent event) -> {
-                        selectedMonHoc = monHoc;
+                    monHocButton.setStyle(
+                            "-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: black; -fx-padding: 10;");
+
+                    // Add Label điểm tổnng kết
+                    Label diemLabel = new Label(
+                            "Điểm Tổng Kết: " + String.format("%.2f", monHoc.getDiem().getDiemTongKet()));
+                    hBox.getChildren().addAll(monHocButton, diemLabel);
+
+                    monHocButton.setOnAction(event -> {
+                        // Reset style của button vừa ấn
+                        if (previouslySelectedHBox != null) {
+                            previouslySelectedHBox.setStyle(
+                                    "-fx-padding: 0; -fx-background-color: transparent; -fx-border-color: lightgray;");
+                        }
+
+                        selectedMonHocDTO = monHoc;
                         maMHField.setText(monHoc.getMaMH());
+                        tenMHField.setText(monHoc.getTenMH());
                         updateThongTin();
+
+                        hBox.setStyle("-fx-padding: 0; -fx-background-color: lightblue; -fx-border-color: lightgray;");
+                        previouslySelectedHBox = hBox;
                     });
 
+                    hBox.setOnMouseClicked(event -> {
+                        monHocButton.fire();
+                    });
+
+                    hBox.setFocusTraversable(false);
+
                     hBox.setSpacing(20);
+                    hBox.setAlignment(Pos.CENTER_LEFT);
+                    hBox.setStyle("-fx-padding: 0; -fx-border-color: lightgray;");
+
                     setGraphic(hBox);
                 }
             }
@@ -167,7 +200,7 @@ public class QuanLyDiemController {
     @FXML
     public void timMonHoc() {
         // Loại bỏ khoảng trống và chuyển về chữ thường
-        String tenMH = tenMHField.getText().trim().toLowerCase();
+        String tenMH = timTenMHField.getText().trim().toLowerCase();
 
         if (DiemDB.diemList == null || DiemDB.diemList.isEmpty()) {
             clearLabels();
@@ -206,52 +239,148 @@ public class QuanLyDiemController {
 
     @FXML
     public void luuDiem() {
+        messageNhapDiemTFlow.getChildren().clear();
+
+        // Lấy thông tin từ input
         String maSV = maSVField.getText();
-        String maMH = selectedMonHoc.getMaMH();
-        Float cc1 = Float.parseFloat(cc1Field.getText());
-        Float cc2 = Float.parseFloat(cc2Field.getText());
-        Float gk = Float.parseFloat(gkField.getText());
-        Float ck = Float.parseFloat(ckField.getText());
+        String maMH = maMHField.getText();
+        String tenMH = tenMHField.getText();
 
-        Diem diemMoi = new Diem(maSV, maMH, cc1, cc2, gk, ck);
+        // Check đủ thông tin
+        if (maSV.isEmpty() || maMH.isEmpty() || tenMH.isEmpty()) {
+            messageNhapDiemTFlow.getChildren()
+                    .add(text("Vui lòng điền đầy đủ thông tin! Mã sinh viên, mã môn học, tên môn học"));
+            return;
+        }
 
-        // Update điểm cho môn học
-        for (MonHocDTO monHoc : monHocList) {
-            if (monHoc.getMaMH().equals(maMH)) {
-                monHoc.setDiem(diemMoi);
+        // Mặc định là 0
+        Float cc1 = !cc1Field.getText().isEmpty() ? Float.parseFloat(cc1Field.getText()) : 0;
+        Float cc2 = !cc2Field.getText().isEmpty() ? Float.parseFloat(cc2Field.getText()) : 0;
+        Float gk = !gkField.getText().isEmpty() ? Float.parseFloat(gkField.getText()) : 0;
+        Float ck = !ckField.getText().isEmpty() ? Float.parseFloat(ckField.getText()) : 0;
+
+        // Điểm cần lưu
+        Diem diemMoi;
+
+        // Tìm Môn Học từ mã môn học
+        MonHoc monHoc = MonHocDB.searchMonHoc(maMH);
+
+        // Môn học không tìm thấy trong MonHocDB
+        if (monHoc == null) {
+            // Lưu môn học mới vô database
+            MonHocDB.monHocs.add(new MonHoc(maMH, tenMH));
+
+            MonHocDTO monHocDTO = new MonHocDTO();
+            monHocDTO.setMaMH(maMH);
+            monHocDTO.setTenMH(tenMH);
+            monHocDTO.setDiem(new Diem(maSV, maMH, cc1, cc2, gk, ck));
+
+            // Lưu môn học đang chọn
+            selectedMonHocDTO = monHocDTO;
+
+            DiemDB.addDiem(new Diem(maSV, maMH, cc1, cc2, gk, ck));
+
+            // Lưu mã môn học của sinh viên hiện tại
+            SinhVienDB.searchByMsv(maSV).addMaMH(maMH);
+
+            messageNhapDiemTFlow.getChildren().add(text("Thêm mới môn học thành công!"));
+
+        } else {
+            // Môn học tìm thấy trong db
+
+            // Check tên môn học thay đổi
+            if (monHoc.getMaMH().equals(maMH) && !monHoc.getTenMH().equals(tenMH)) {
+                monHoc.setTenMH(tenMH);
+
+                MonHocDB.updateMonHoc(monHoc);
+
+                for (MonHocDTO mHocDTO : monHocList) {
+                    if (mHocDTO.getMaMH().equals(maMH)) {
+                        mHocDTO.setTenMH(tenMH);
+                        messageNhapDiemTFlow.getChildren().add(text("Tên môn học đã được thay đổi"));
+                        break;
+                    }
+                }
+
+            }
+
+            // Check điểm không thay đổi
+            Diem diemToCheck = DiemDB.searchDiem(maSV, maMH);
+
+            // Điểm thay đổi
+            if (diemToCheck != null) {
+
+                if (cc1.equals(diemToCheck.getDiemCC1()) && cc2.equals(diemToCheck.getDiemCC2()) &&
+                        gk.equals(diemToCheck.getDiemGK()) && ck.equals(diemToCheck.getDiemCK())) {
+                    timSV();
+                    messageNhapDiemTFlow.getChildren().add(text("Không có thay đổi mới về điểm"));
+                    return;
+                }
+
+                diemMoi = new Diem(maSV, maMH, cc1, cc2, gk, ck);
+
+                DiemDB.updateDiem(diemMoi);
+
+                // Update điểm cho môn học
+                for (MonHocDTO mHocDTO : monHocList) {
+                    if (mHocDTO.getMaMH().equals(maMH)) {
+                        mHocDTO.setDiem(diemMoi);
+                        selectedMonHocDTO = mHocDTO;
+
+                        messageNhapDiemTFlow.getChildren().add(text("Cập nhật điểm thành công"));
+                        break;
+                    }
+                }
+            } else {
+                // Sinh viên chưa có điểm môn học này
+                diemMoi = new Diem(maSV, maMH, cc1, cc2, gk, ck);
+                DiemDB.addDiem(diemMoi);
+
+                SinhVien sinhVien = SinhVienDB.searchByMsv(maSV);
+
+                if (sinhVien == null) {
+                    return;
+                }
+
+                // Add mã môn học vô sinh viên
+                sinhVien.addMaMH(maMH);
+                
+                messageNhapDiemTFlow.getChildren().add(text("Thêm điểm mới thành công!"));
             }
         }
 
-        selectedMonHoc = new MonHocDTO(maMH, maMH, diemMoi);
-
+        // Load danh sách môn học
+        monHocList = getMonHocDTOs(maSV, SinhVienDB.searchByMsv(maSV).getMaMHs());
         danhSachMonHoc.getItems().setAll(monHocList);
-
-        if (DiemDB.searchDiem(maSV, maMH) != null) {
-            DiemDB.updateDiem(diemMoi);
-            messageNhapDiemLabel.setText("Cập nhật điểm thành công!");
-        } else {
-            DiemDB.addDiem(diemMoi);
-            messageNhapDiemLabel.setText("Thêm mới điểm thành công!");
-        }
-
         updateThongTin();
-        clearInputFields();
+        // clearInputFields();
+    }
+
+    private Text text(String text) {
+        Text newText = new Text(text + "\n");
+        newText.setFill(Color.RED);
+
+        return newText;
     }
 
     private void updateThongTin() {
 
-        if (selectedMonHoc.getDiem() == null) {
+        if (selectedMonHocDTO == null) {
             clearLabels();
             return;
         }
 
-        Diem diem = selectedMonHoc.getDiem();
+        if (selectedMonHocDTO.getDiem() == null) {
+            clearLabels();
+            return;
+        }
 
+        Diem diem = selectedMonHocDTO.getDiem();
 
         SinhVien sVien = SinhVienDB.searchByMsv(diem.getMaSV());
 
         tenLabel.setText("Tên: " + sVien.getTen());
-        monHocLabel.setText("Môn Học: " + selectedMonHoc.getMaMH());
+        monHocLabel.setText("Môn Học: " + selectedMonHocDTO.getTenMH());
         cc1Label.setText("CC1: " + diem.getDiemCC1());
         cc2Label.setText("CC2: " + diem.getDiemCC2());
         gkLabel.setText("Điểm Giữa Kì: " + diem.getDiemGK());
@@ -268,12 +397,12 @@ public class QuanLyDiemController {
         ckLabel.setText("Điểm Cuối Kì: ");
     }
 
-    private void clearInputFields() {
-        cc1Field.clear();
-        cc2Field.clear();
-        gkField.clear();
-        ckField.clear();
-    }
+    // private void clearInputFields() {
+    //     cc1Field.clear();
+    //     cc2Field.clear();
+    //     gkField.clear();
+    //     ckField.clear();
+    // }
 
     @FXML
     private void gotoHomePage() throws IOException {

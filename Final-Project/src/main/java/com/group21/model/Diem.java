@@ -8,6 +8,15 @@ public class Diem {
     private Float diemGK;
     private Float diemCK;
 
+    public Diem(String maSV, String maMH) {
+        this.maMH = maMH;
+        this.maSV = maSV;
+        this.diemCC1 = 0f;
+        this.diemCC2 = 0f;
+        this.diemGK = 0f;
+        this.diemCK = 0f;
+    }
+
     public Diem(String maSV, String maMH, Float diemCC1, Float diemCC2, Float diemGK, Float diemCK) {
         this.maSV = maSV;
         this.maMH = maMH;

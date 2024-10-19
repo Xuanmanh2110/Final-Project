@@ -64,6 +64,11 @@ public class SinhVienController {
     }
 
     @FXML
+    public void goToDanhSachSV() throws IOException {
+        App.setRoot((Stage) maSVField.getScene().getWindow(), "quanLySV");
+    }
+
+    @FXML
     private void handleLuuButtonAction() {
         String ten = tenField.getText();
         String maSV = maSVField.getText();

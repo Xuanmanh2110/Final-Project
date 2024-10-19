@@ -128,8 +128,9 @@
         </HBox>
     </children>
 </VBox>
-      <HBox layoutX="280.0" layoutY="528.0" spacing="20.0">
+      <HBox layoutX="174.0" layoutY="473.0" spacing="20.0">
          <children>
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToDanhSachSV" text="Danh sách sinh viên" />
             <Button mnemonicParsing="false" onAction="#goToUpdateScoreView" text="Cập nhật điểm cho sinh viên" />
             <Button mnemonicParsing="false" onAction="#gotoHomePage" text="Home Page" />
          </children>

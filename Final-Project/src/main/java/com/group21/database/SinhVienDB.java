@@ -37,10 +37,4 @@ public class SinhVienDB {
 
         return sinhViensDTO;
     }
-
-    public static SinhVien getTen() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTen'");
-    }
-
 }

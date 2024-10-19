@@ -10,12 +10,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group21.QuanLyDiemController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="170.0" prefWidth="400.0" style="-fx-border-width: 1px; -fx-border-color: black;">
+            <VBox alignment="TOP_CENTER" style="-fx-border-width: 1px; -fx-border-color: black;">
                <children>
                   <Label alignment="CENTER" prefHeight="32.0" prefWidth="398.0" text="Tìm Môn Học">
                      <font>
@@ -27,15 +29,16 @@
                         <Label text="Mã Sinh Viên" />
                         <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
                            <children>
-                              <TextField fx:id="maSVField" />
+                              <TextField fx:id="maSVField" text="2301" />
                               <Button mnemonicParsing="false" onAction="#timSV" prefWidth="80.0" text="Tìm" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                        <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </VBox>
+                  <Label fx:id="messageLabel" textFill="RED" />
                   <Label alignment="CENTER" layoutX="11.0" layoutY="29.0" prefWidth="398.0" text="Danh Sách Môn Học:">
                      <font>
                         <Font size="14.0" />
@@ -46,7 +49,7 @@
                         <Label text="Tìm môn học" />
                         <HBox spacing="20.0">
                            <children>
-                              <TextField fx:id="tenMHField" />
+                              <TextField fx:id="timTenMHField" />
                               <Button fx:id="timMHBtn" disable="true" mnemonicParsing="false" onAction="#timMonHoc" prefWidth="80.0" text="Tìm" />
                            </children>
                         </HBox>
@@ -55,24 +58,29 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </VBox>
-                  <ListView fx:id="danhSachMonHoc" prefHeight="200.0" prefWidth="200.0" />
-                  <Label fx:id="messageLabel" textFill="RED" />
+                  <ListView fx:id="danhSachMonHoc" focusTraversable="false" pickOnBounds="false" />
                </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </VBox>
-            <VBox prefWidth="400.0" spacing="10.0">
+            <VBox spacing="10.0">
                <children>
                   <Label alignment="CENTER" prefHeight="31.0" prefWidth="406.0" text="Nhập Điểm">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
+                  <HBox alignment="CENTER" layoutX="30.0" layoutY="51.0" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
+                     <children>
+                        <Label text="Tên Môn Học" />
+                        <TextField fx:id="tenMHField" text="oop" />
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
                      <children>
                         <Label text="Mã Môn Học" />
-                        <TextField fx:id="maMHField" editable="false" />
+                        <TextField fx:id="maMHField" text="MH04" />
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -102,22 +110,19 @@
                         <TextField fx:id="ckField" />
                      </children>
                   </HBox>
-                  <Label fx:id="messageNhapDiemLabel" prefHeight="20.0" prefWidth="375.0" textFill="RED">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
                   <Pane prefHeight="48.0" prefWidth="291.0">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="105.0" layoutY="1.0" mnemonicParsing="false" onAction="#luuDiem" prefWidth="80.0" text="Lưu" />
+                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="145.0" layoutY="11.0" mnemonicParsing="false" onAction="#luuDiem" prefWidth="80.0" text="Lưu" />
                      </children>
                   </Pane>
+                  <TextFlow fx:id="messageNhapDiemTFlow" prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                     </children>
+                  </TextFlow>
                </children>
-               <padding>
-                  <Insets left="20.0" right="20.0" />
-               </padding>
             </VBox>
-            <VBox prefWidth="400.0" spacing="20.0" style="-fx-border-color: black; -fx-border-width: 1px;">
+            <VBox prefWidth="300.0" spacing="20.0" style="-fx-border-color: black; -fx-border-width: 1px;">
                <children>
                   <VBox prefHeight="289.0" prefWidth="331.0" spacing="10.0">
                      <children>
@@ -146,10 +151,10 @@
                         <Insets left="20.0" right="20.0" />
                      </padding>
                   </VBox>
-                  <Pane prefHeight="88.0" prefWidth="331.0">
+                  <Pane prefHeight="275.0" prefWidth="331.0">
                      <children>
-                        <Button layoutX="39.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToDanhSachSV" text="Danh Sách Sinh Viên" />
-                        <Button layoutX="198.0" layoutY="41.0" mnemonicParsing="false" onAction="#gotoHomePage" text="Home Page" />
+                        <Button layoutX="68.0" layoutY="49.0" mnemonicParsing="false" onAction="#goToDanhSachSV" text="Danh Sách Sinh Viên" />
+                        <Button layoutX="92.0" layoutY="113.0" mnemonicParsing="false" onAction="#gotoHomePage" text="Home Page" />
                      </children>
                   </Pane>
                </children>
