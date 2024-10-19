@@ -5,18 +5,9 @@ chuyển vô thư mục Final-Project
 cd Final-Project
 ```
 
-Chạy dev:  
+Chạy Dự án:  
 ```
 mvn clean javafx:run
-```
-
-Build: 
-```
-mvn clean javafx:jlink
-```
-xong chạy 
-```
-.\target\QLSV\bin\QuanLySinhVien
 ```
 
 
