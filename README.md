@@ -35,5 +35,5 @@ giao diện đầu ra
 ![image](https://github.com/user-attachments/assets/96a5c49a-b6e7-4a6a-8a64-2fc20f7578c3)
 
 
-demo: https://studio.youtube.com/video/UboRmz2iKKs/edit
+demo: [https://studio.youtube.com/video/UboRmz2iKKs/edit](https://www.youtube.com/watch?v=UboRmz2iKKs)
 
