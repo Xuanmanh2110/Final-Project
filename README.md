@@ -61,7 +61,7 @@ UML sequence diagram Tra Cứu
 ![image](https://github.com/user-attachments/assets/70a84f7e-bd09-4cbe-befa-6bf974a947ce)
 
 
-Giao diện Đăng 
+Giao diện Đăng nhập
 
 ![image](https://github.com/user-attachments/assets/96a5c49a-b6e7-4a6a-8a64-2fc20f7578c3)
 
