@@ -3,7 +3,7 @@
 # Dự Án Xây Dựng Ứng Dụng Quản Lý Sinh Viên
 
 ## Giới Thiệu Dự Án
-Dự Án Quản lý sinh viên
+Dự Án Quản lý sinh viên giúp cho người quản lý được nhiều sinh viên và từng thông tin của sinh viên 1 cách hiệu quả!
 
 ### Thành Viên
 - Nguyễn Xuân Mạnh 23010045
@@ -13,8 +13,14 @@ Dự Án Quản lý sinh viên
 ### Chức Năng Chính
 - Quản lý thông tin sinh viên 
 - Thêm, sửa, xóa sinh viên
+- Liệt kê danh sách sinh viên
 - Nhập Môn học
 - Nhập điểm
+
+### Link Giới thiệu sản phẩm
+
+Demo: [https://studio.youtube.com/video/UboRmz2iKKs/edit](https://www.youtube.com/watch?v=UboRmz2iKKs)
+
 ### Chạy Dự án
 
 chuyển vô thư mục Final-Project
@@ -52,5 +58,4 @@ giao diện đầu ra
 ![image](https://github.com/user-attachments/assets/96a5c49a-b6e7-4a6a-8a64-2fc20f7578c3)
 
 
-demo: [https://studio.youtube.com/video/UboRmz2iKKs/edit](https://www.youtube.com/watch?v=UboRmz2iKKs)
 
