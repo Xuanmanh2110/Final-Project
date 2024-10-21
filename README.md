@@ -1,15 +1,17 @@
+#Nhóm 21
+
 # Dự Án Xây Dựng Ứng Dụng Quản Lý Sinh Viên
 
 ## Giới Thiệu Dự Án
 Dự Án Quản lý sinh viên
 
 ### Thành Viên
-- Nguyễn Xuân Mạnh
-- Đàm Quang Đô
-- Nguyễn Xuân Thanh
+- Nguyễn Xuân Mạnh 23010045
+- Đàm Quang Đô 23010046
+- Nguyễn Xuân Thanh 23010073 
 
 ### Chức Năng Chính
-- Đăng ký, đăng nhập tài khoản 
+- Quản lý thông tin sinh viên 
 - Thêm, sửa, xóa sinh viên
 - Nhập Môn học
 - Nhập điểm
