@@ -1,3 +1,18 @@
+# Dự Án Xây Dựng Ứng Dụng Quản Lý Sinh Viên
+
+## Giới Thiệu Dự Án
+Dự Án Quản lý sinh viên
+
+### Thành Viên
+- Nguyễn Xuân Mạnh
+- Đàm Quang Đô
+- Nguyễn Xuân Thanh
+
+### Chức Năng Chính
+- Đăng ký, đăng nhập tài khoản 
+- Thêm, sửa, xóa sinh viên
+- Nhập Môn học
+- Nhập điểm
 ### Chạy Dự án
 
 chuyển vô thư mục Final-Project
