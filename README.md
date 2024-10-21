@@ -1,6 +1,6 @@
 # Nhóm 21
 
-# Dự Án Xây Dựng Ứng Dụng Quản Lý Sinh Viên
+## Dự Án Xây Dựng Ứng Dụng Quản Lý Sinh Viên
 
 ## Giới Thiệu Dự Án
 Dự Án Quản lý sinh viên giúp cho người quản lý được nhiều sinh viên và từng thông tin của sinh viên 1 cách hiệu quả!
